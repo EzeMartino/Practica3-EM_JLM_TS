@@ -1,12 +1,11 @@
-﻿using VideogamesInfo.API;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Practica3.API;
 using Practica3.API.Models;
 
 namespace VideogamesInfo.API.Controllers
 {
     [ApiController]
-    [Route("api/videogames/{idVideogame}/reviews")] //Ya que esto es dependiente de ciudades necesito que primero me indique la ciudad
+    [Route("api/videogames/{idVideogame}/reviews")]
     public class ReviewsController : ControllerBase
     {
         private readonly VideogamesData _videogamesData;
@@ -25,7 +24,7 @@ namespace VideogamesInfo.API.Controllers
             return Ok(videogame.Reviews);
         }
 
-        [HttpGet("{idReview}", Name = "GetReview")] // El name se lo da para usarlo en el POST.
+        [HttpGet("{idReview}", Name = "GetReview")]
         public ActionResult<ReviewDto> GetReview(int idVideogame, int idReview)
         {
             var videogame = _videogamesData.Videogames.FirstOrDefault(v => v.Id == idVideogame);
